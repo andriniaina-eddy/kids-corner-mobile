@@ -10,7 +10,7 @@ import 'api_exception.dart';
 class ApiConfig {
   static const String baseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'http://127.0.0.1:8000/api',
+    defaultValue: 'http://10.0.2.2:8000/api',
   );
 }
 
@@ -46,6 +46,20 @@ class ApiService {
 
   Future<Map<String, dynamic>> patch(String path, [Map<String, dynamic>? body]) async {
     final response = await http.patch(_uri(path), headers: _headers, body: jsonEncode(body ?? {}));
+    return _handle(response);
+  }
+
+  /// Envoi multipart pour l'upload de fichiers (ex: photo produit).
+  /// Laravel attend une requête POST avec `_method=PUT` en champ caché
+  /// quand la route cible est en réalité un PUT, mais ici la route d'upload
+  /// est une vraie route POST, donc pas besoin de ce contournement.
+  Future<Map<String, dynamic>> postMultipart(String path, String filePath, {String fileField = 'image'}) async {
+    final request = http.MultipartRequest('POST', _uri(path));
+    request.headers.addAll({'Accept': 'application/json', if (_token != null) 'Authorization': 'Bearer $_token'});
+    request.files.add(await http.MultipartFile.fromPath(fileField, filePath));
+
+    final streamedResponse = await request.send();
+    final response = await http.Response.fromStream(streamedResponse);
     return _handle(response);
   }
 

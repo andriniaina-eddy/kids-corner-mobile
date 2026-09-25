@@ -8,8 +8,12 @@ import '../widgets/stat_card.dart';
 import 'employees_screen.dart';
 import 'inventory_shops_screen.dart';
 import 'products_management_screen.dart';
+import 'purchase_orders_screen.dart';
+import 'reports_screen.dart';
 import 'shops_management_screen.dart';
 import 'stock_takes_screen.dart';
+import 'suppliers_screen.dart';
+import 'customers_screen.dart';
 import 'transfers_list_screen.dart';
 import 'trash_screen.dart';
 
@@ -182,9 +186,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
         onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ProductsManagementScreen())),
       ),
       _ManagementTile(
+        icon: Icons.local_shipping_outlined,
+        label: 'Fournisseurs',
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SuppliersScreen())),
+      ),
+      _ManagementTile(
+        icon: Icons.receipt_long_outlined,
+        label: 'Bons de commande',
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PurchaseOrdersScreen())),
+      ),
+      _ManagementTile(
+        icon: Icons.groups_outlined,
+        label: 'Clients',
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CustomersScreen())),
+      ),
+      _ManagementTile(
         icon: Icons.fact_check_outlined,
         label: 'Inventaires mensuels',
         onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const StockTakesScreen())),
+      ),
+      _ManagementTile(
+        icon: Icons.bar_chart_outlined,
+        label: 'Rapports',
+        onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ReportsScreen())),
       ),
       _ManagementTile(
         icon: Icons.delete_outline,

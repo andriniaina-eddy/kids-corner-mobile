@@ -4,6 +4,7 @@ import '../providers/auth_provider.dart';
 import 'dashboard_screen.dart';
 import 'inventory_shops_screen.dart';
 import 'profile_screen.dart';
+import 'sales_screen.dart';
 import 'super_admin_dashboard_screen.dart';
 import 'transfers_list_screen.dart';
 
@@ -20,6 +21,7 @@ class _HomeShellState extends State<HomeShell> {
   static const _screens = [
     DashboardScreen(),
     InventoryShopsScreen(),
+    SalesScreen(),
     TransfersListScreen(),
     ProfileScreen(),
   ];
@@ -55,6 +57,7 @@ class _HomeShellState extends State<HomeShell> {
         destinations: const [
           NavigationDestination(icon: Icon(Icons.dashboard_outlined), selectedIcon: Icon(Icons.dashboard), label: 'Accueil'),
           NavigationDestination(icon: Icon(Icons.inventory_2_outlined), selectedIcon: Icon(Icons.inventory_2), label: 'Inventaire'),
+          NavigationDestination(icon: Icon(Icons.point_of_sale_outlined), selectedIcon: Icon(Icons.point_of_sale), label: 'Ventes'),
           NavigationDestination(icon: Icon(Icons.swap_horiz_outlined), selectedIcon: Icon(Icons.swap_horiz), label: 'Transferts'),
           NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profil'),
         ],

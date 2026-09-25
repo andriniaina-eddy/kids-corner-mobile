@@ -1,3 +1,5 @@
+import 'product_variant.dart';
+
 class Product {
   final int id;
   final String name;
@@ -7,6 +9,9 @@ class Product {
   final double salePrice;
   final int totalStock;
   final bool isActive;
+  final bool tracksBatches;
+  final String? imageUrl;
+  final List<ProductVariant> variants;
 
   Product({
     required this.id,
@@ -17,6 +22,9 @@ class Product {
     required this.salePrice,
     required this.totalStock,
     this.isActive = true,
+    this.tracksBatches = false,
+    this.imageUrl,
+    this.variants = const [],
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -29,6 +37,11 @@ class Product {
       salePrice: double.tryParse('${json['sale_price']}') ?? 0,
       totalStock: json['total_stock'] as int? ?? 0,
       isActive: json['is_active'] as bool? ?? true,
+      tracksBatches: json['tracks_batches'] as bool? ?? false,
+      imageUrl: json['image_url'] as String?,
+      variants: (json['variants'] as List<dynamic>? ?? [])
+          .map((v) => ProductVariant.fromJson(v as Map<String, dynamic>))
+          .toList(),
     );
   }
 }

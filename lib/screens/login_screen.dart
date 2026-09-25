@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Icon(Icons.inventory_2_rounded, size: 64, color: AppTheme.primary),
                   const SizedBox(height: 12),
                   Text(
-                    'Gestionnaire de stock',
+                    'StockManager',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           fontWeight: FontWeight.bold,
